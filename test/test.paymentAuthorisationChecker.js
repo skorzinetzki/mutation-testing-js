@@ -3,7 +3,6 @@ var User = require('../src/user.js');
 var Money = require('../src/money.js');
 var Payment = require('../src/payment.js');
 var checkFor = require('../src/paymentAuthorisationChecker.js');
-var authorisation = require('../src/paymentAuthorisation.js');
 
 describe('#checkFor()', function() {
     it('should not need approval if payment by initiator with limit more than amount', function() {
@@ -28,5 +27,12 @@ describe('#checkFor()', function() {
         let authorisation = checkFor(payment);
         expect(authorisation.approvalNeeded).to.eql(true);
         console.log(authorisation.primaryApprover.name);
+    });
+    it('should not need approval by supervisor when amount equals limit', function () {
+        let supervisor = new User("liz", new Money(200, 0));
+        let initiator = new User("dave", new Money(100, 0), supervisor);
+        let payment = new Payment(new Money(100, 0), initiator);
+        let authorisation = checkFor(payment);
+        expect(authorisation.approvalNeeded).to.eql(false);
     });
 });

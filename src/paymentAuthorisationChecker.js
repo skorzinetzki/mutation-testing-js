@@ -5,9 +5,6 @@ function checkFor(payment) {
     let initiator = payment.initiator;
     let amount = payment.amount;
     let limit = initiator.limit;
-    //if (amount.compareTo(limit) <= 0) {
-    //    paymentAuthorisation.approvalNeeded = false;
-    //}
     if (amount.compareTo(limit) > 0) {
         paymentAuthorisation.approvalNeeded = true;
         let approver = getPrimaryApprover(initiator, amount);
