@@ -6,7 +6,7 @@ module.exports = function(config) {
         mutated: true,
         included: false
       },
-      "test/**/test.paymentAuthorisation*.js"
+      "test/**/test.*.js",
     ],
     testRunner: "mocha",
     mutator: "javascript",
