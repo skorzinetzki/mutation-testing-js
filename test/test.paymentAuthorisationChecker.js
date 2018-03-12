@@ -3,6 +3,7 @@ var User = require('../src/user.js');
 var Money = require('../src/money.js');
 var Payment = require('../src/payment.js');
 var checkFor = require('../src/paymentAuthorisationChecker.js');
+var authorisation = require('../src/paymentAuthorisation.js');
 
 describe('#checkFor()', function() {
     it('should not need approval if payment by initiator with limit more than amount', function() {
